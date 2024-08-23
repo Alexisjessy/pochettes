@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gardevoir" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header id="header">
+
+        <div class="buttons">
+            <div class="prev-track" onclick="prevTrack()">
+                <i class="fa fa-step-backward fa-2x"></i>
+            </div>
+            <div class="playpause-track" onclick="playpauseTrack()">
+                <i class="fa fa-play-circle fa-5x"></i>
+            </div>
+            <div class="next-track" onclick="nextTrack()">
+                <i class="fa fa-step-forward fa-2x"></i>
+            </div>
+        </div>
+        <div class="slider_container">
+            <i class="fa fa-volume-down"></i>
+            <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
+            <i class="fa fa-volume-up"></i>
+        </div>
+        
+
+        <div class="slider_container_duration">
+            <h3>Nom Artiste</h3>
+            <p>Titre de la chanson
+            </p>
+            <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+         
+        </div>
+        <input class= "search-bar" placeholder="&#128269; Recherche">
+
+
+    </header>
+    <main>
+
+        
+       
+ 
+        <aside>
+            <nav>
+                <li>Music</li>
+                <li>Vidéo</li>
+                <li>Podcasts</li>
+            </nav>
+            </aside>
+  
+        <section id="section">
+         
+            <figure>
+                <img class="pochette-150-1" src="/150/1.jpg" alt="">
+                <p class="title">Titre</p>
+                <p>Nom artiste</p>
+            </figure>
+            <figure>
+                <img class="pochette-150-2" src="/150/2.jpg" alt="">
+                <p class="title">Titre</p>
+                <p>Nom artiste</p>
+            </figure>
+            <figure>
+                <img class="pochette-150-3" src="/150/3.jpg" alt="">
+                <p class="title">Titre</p>
+                <p>Nom artiste</p>
+            </figure>
+            <figure>
+                <img class="pochette-150-4" src="/150/4.jpg" alt="">
+                <p class="title">Titre</p>
+                <p>Nom artiste</p>
+            </figure>
+            <figure>
+                <img class="pochette-150-5" src="/150/5.jpg" alt="">
+                <p class="title">Titre</p>
+                <p>Nom artiste</p>
+            </figure>
+            <figure>
+                <img class="pochette-150-6" src="/150/6.jpg" alt="">
+                <p class="title">Titre</p>
+                <p>Nom artiste</p>
+            </figure>
+            <figure>
+                <img class="pochette-150-7" src="/150/7.jpg" alt="">
+                <p class="title">Titre</p>
+                <p>Nom artiste</p>
+            </figure>
+            <figure>
+                <img class="pochette-150-1" src="/150/1.jpg" alt="">
+                <p class="title">Titre</p>
+                <p>Nom artiste</p>
+            </figure>
+        </section>
+        <script type="module" src="script.js"></script>
+    </main>
+</body>
+
+</html>

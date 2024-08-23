@@ -1,0 +1,134 @@
+body {
+
+    margin: 0;
+    padding: 0;
+}
+input {
+  height: 40px;
+}
+main {
+   display: flex;
+}
+#section {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row wrap;
+   
+    margin-top: 10em;
+    margin-left: 5em;
+    margin-right: 3em;
+    min-width: auto;
+
+
+}
+
+aside {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10em;
+    margin-left: 20px;
+  
+}
+#header {
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
+    height: 100px;
+
+}
+figure {
+
+    border: 2px solid gray;
+    margin-bottom: 10px;
+    padding: 5px;
+    box-shadow: 1px 2px 5px black;;
+}
+
+img {
+
+    flex: 1 1 auto;
+}
+
+nav li {
+
+    list-style-type: none;
+    text-align: left;
+    border: 1px solid gray;
+    padding: 5px;
+    width: 120px;
+    color: blue;
+  
+}
+.title {
+    font-size: 20px;
+    text-align: center;
+    color: blue;
+}
+
+p {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.search-bar {
+
+    padding: 0;
+
+
+}
+
+.slider_container_duration {
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+   
+    align-items: center;
+ 
+}
+
+
+.slider_container {
+
+    
+    display: flex;
+ justify-content: flex-start;
+    align-items: last baseline;
+}
+
+
+.seek_slider,
+.volume_slider {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 5px;
+    background: black;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.seek_slider::-webkit-slider-thumb,
+.volume_slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: white;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.seek_slider:hover,
+.volume_slider:hover {
+    opacity: 1.0;
+}
