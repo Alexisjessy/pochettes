@@ -1,106 +1,104 @@
-body {
 
+body {
     margin: 0;
     padding: 0;
 }
-input {
-  height: 40px;
-}
-main {
-   display: flex;
-}
-#section {
 
+input {
+    height: 40px;
+}
+
+main {
     display: flex;
+    flex-direction: row;
+}
+
+#section {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
-    flex-flow: row wrap;
-   
     margin-top: 10em;
     margin-left: 5em;
     margin-right: 3em;
-    min-width: auto;
+}
 
+.volume-down {
+
+    margin: 5px;
+    padding: 10px;
+}
+.volume-up {
+
+    margin: 5px;
+    padding: 10px;
+}
+
+.volume-down:hover, .volume-up:hover{
+
+    background-color: blue;
+}
+
+figure {
+    border: 2px solid gray;
+    margin-bottom: 10px;
+    padding: 5px;
+    box-shadow: 1px 2px 5px black;
+    flex-basis: 23%; 
+    cursor: pointer;
 
 }
+figure:hover{
+    filter: blur(4px);
+}
+img {
+    width: 100%;
+}
+
 
 aside {
     display: flex;
     flex-wrap: wrap;
     margin-top: 10em;
     margin-left: 20px;
-  
-}
-#header {
-    display: flex;
-    margin-top: 30px;
-    justify-content: space-between;
-    height: 100px;
-
-}
-figure {
-
-    border: 2px solid gray;
-    margin-bottom: 10px;
-    padding: 5px;
-    box-shadow: 1px 2px 5px black;;
-}
-
-img {
-
-    flex: 1 1 auto;
 }
 
 nav li {
-
     list-style-type: none;
     text-align: left;
     border: 1px solid gray;
     padding: 5px;
     width: 120px;
     color: blue;
-  
-}
-.title {
-    font-size: 20px;
-    text-align: center;
-    color: blue;
 }
 
-p {
-    text-align: center;
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    margin-top: 30px;
 }
 
 .buttons {
     display: flex;
     flex-direction: row;
     align-items: center;
-    
+    margin-left: 2em;
 }
 
-.search-bar {
 
-    padding: 0;
-
-
-}
 
 .slider_container_duration {
     gap: 15px;
     display: flex;
     flex-direction: column;
-   
     align-items: center;
- 
 }
 
-
 .slider_container {
-
-    
     display: flex;
- justify-content: flex-start;
-    align-items: last baseline;
+    justify-content: flex-start;
+    align-items: baseline;
 }
 
 
@@ -112,8 +110,7 @@ p {
     height: 5px;
     background: black;
     opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+    transition: opacity 0.2s;
 }
 
 .seek_slider::-webkit-slider-thumb,
@@ -131,4 +128,133 @@ p {
 .seek_slider:hover,
 .volume_slider:hover {
     opacity: 1.0;
+}
+
+@media (max-width: 875px) {
+    main {
+        display: flex;
+        flex-direction: row; 
+    }
+    .search-bar {
+        margin-top: 2em;
+        padding: 10px;
+        height: auto;
+    }
+  
+    .seek_slider {
+        width: 80%;
+    }
+    .slider_container_duration {
+        margin-top: 1em;
+    }
+    .buttons {
+        width: auto;
+        align-items: center;
+        margin-left: 2em;
+        margin-top: 5px;
+        
+    }
+ 
+    figure {
+        flex-basis: 30%; 
+    }
+    #header {
+        flex-direction: row; 
+        align-items: center;
+        margin-top: 10px;
+        justify-content: space-between; 
+    }
+ 
+    
+}
+
+@media (max-width: 768px) {
+    main {
+        display: flex;
+        flex-direction: row; 
+        
+    }
+    .seek_slider {
+    margin-left: 2px;
+    }
+ 
+    figure {
+        flex-basis: 48%; 
+    }
+    #header {
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 5em;
+        justify-content: space-between; 
+        align-items: center; 
+       
+    }
+    .buttons {
+        width: 100%;
+    }
+    .slider_container_duration {
+        flex-grow: 1; 
+    }
+    .search-bar {
+        flex-grow: 1;
+    }
+ 
+    
+}
+/* Mobile View media queries  */
+
+@media (max-width: 510px) {
+    main {
+        flex-direction: column;
+    }
+   .search-bar{
+   
+    width: 75%;
+    margin-bottom: 20px;
+    
+
+   }
+    aside nav {
+      width: 100%;
+      margin-top:5em;
+    }
+    .seek_slider {
+
+        width: 80%;
+
+        
+    }
+    .buttons {
+        width: auto;
+        align-items: center;
+        margin-left: 2em;
+        
+    }
+    .slider_container_duration {
+         margin-top: 1em;
+         margin-bottom: 2em;
+    }
+    #section {
+        margin-top: 2em;
+        margin-left: 1em;
+        margin-right: 1em;
+        
+    }
+
+    figure {
+        flex-basis: 48%; 
+    }
+ 
+    #header {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2em;
+    }
+
+    nav li {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+        margin-top: 10px;
+    }
 }
