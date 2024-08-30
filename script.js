@@ -3,6 +3,7 @@ import { CLIENT_ID, CLIENT_SECRET } from "./token.js";
 let currentTrackIndex = 0;
 let isPlaying = false;
 let audioElement = new Audio();
+let searchResultsTracks = [];
 
 const tracks = [
   {
@@ -16,31 +17,43 @@ const tracks = [
     title: "Hold_On_a_Minute",
     src: "music/Hold_On_a_Minute.mp3",
   },
-  { artist: "UNKNOWN", title: "Titre 4", src: "music/Stay_With_You.mp3" },
-  { artist: "Nom Artiste 5", title: "Titre 5", src: "music/Earthy_Crust.mp3" },
+  { artist: "UNKNOWN", title: "Stay with you", src: "music/Stay_With_You.mp3" },
   {
-    artist: "Nom Artiste 6",
-    title: "Titre 6",
+    artist: "Nom Artiste 5",
+    title: "Earthy Crust",
+    src: "music/Earthy_Crust.mp3",
+  },
+  {
+    artist: "Beethoven",
+    title: "Symphony No 5 by Beethoven",
     src: "music/Symphony_No_5_by_Beethoven.mp3",
   },
 ];
 
 function loadTrack(index) {
-  let track = tracks[index];
-  audioElement.src = track.src;
+  let track;
+  if (searchResultsTracks.length > 0) {
+    track = searchResultsTracks[index];
+    audioElement.src = track.preview_url;
+  } else {
+    track = tracks[index];
+    audioElement.src = track.src;
+  }
+
   document.querySelector(".slider_container_duration h3").textContent =
-    track.artist;
+    track.artist || track.artists[0].name;
   document.querySelector(".slider_container_duration p").textContent =
-    track.title;
+    track.title || track.name;
   audioElement.load();
 
-  /*** Cet événement est déclenché lorsque les métadonnées du fichier audio (comme la durée) sont chargées. Pour eviter NAN */
+  /**met à jour l'affichage de la durée totale de la piste */
   audioElement.addEventListener("loadedmetadata", () => {
     document.getElementById("total-time").textContent = formatTime(
       audioElement.duration
     );
   });
 }
+
 function playTrack() {
   audioElement.play();
   isPlaying = true;
@@ -66,22 +79,25 @@ window.playpauseTrack = function () {
 };
 
 window.prevTrack = function () {
-  currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+  const trackList =
+    searchResultsTracks.length > 0 ? searchResultsTracks : tracks;
+  currentTrackIndex =
+    (currentTrackIndex - 1 + trackList.length) % trackList.length;
   loadTrack(currentTrackIndex);
   playTrack();
 };
 
 window.nextTrack = function () {
-  currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+  const trackList =
+    searchResultsTracks.length > 0 ? searchResultsTracks : tracks;
+  currentTrackIndex = (currentTrackIndex + 1) % trackList.length;
   loadTrack(currentTrackIndex);
   playTrack();
 };
 
-function prevTrack() {
-  currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
-  loadTrack(currentTrackIndex);
-  playTrack();
-}
+audioElement.addEventListener("ended", () => {
+  nextTrack();
+});
 
 function setVolume() {
   audioElement.volume = document.querySelector(".volume_slider").value / 100;
@@ -110,6 +126,7 @@ function seekTo() {
   let seekSlider = document.querySelector(".seek_slider");
   audioElement.currentTime = audioElement.duration * (seekSlider.value / 100);
 }
+
 document.querySelector(".seek_slider").addEventListener("input", seekTo);
 
 audioElement.addEventListener("timeupdate", () => {
@@ -140,10 +157,10 @@ document.querySelectorAll(".album").forEach((album, index) => {
     playTrackByIndex(currentTrackIndex);
   });
 });
-audioElement.addEventListener("ended", () => {
-  nextTrack();
-});
+
 loadTrack(currentTrackIndex);
+
+/** Configuration API Spotify */
 
 async function getSpotifyToken() {
   const response = await fetch("https://accounts.spotify.com/api/token", {
@@ -191,7 +208,13 @@ function displaySearchResults(results) {
   const section = document.querySelector("#section");
   section.innerHTML = "";
 
+  /** Réinitialiser les résultats de la recherche**/
+  searchResultsTracks = [];
+
   results.tracks.items.forEach((track) => {
+    /**  Ajouter chaque piste trouvée à `searchResultsTracks`*/
+    searchResultsTracks.push(track);
+
     const figure = document.createElement("figure");
     const img = document.createElement("img");
     const title = document.createElement("p");
@@ -203,10 +226,14 @@ function displaySearchResults(results) {
 
     figure.appendChild(img);
     figure.appendChild(title);
+    title.style.color = "blue";
+    title.style.fontSize = "20px";
     figure.appendChild(artist);
     section.appendChild(figure);
 
     figure.addEventListener("click", () => {
+      /*Mettre à jour l'index actuel */
+      currentTrackIndex = searchResultsTracks.indexOf(track);
       playSpotifyTrack(track);
     });
   });
