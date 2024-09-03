@@ -16,20 +16,21 @@
     <header id="header">
       <div class="controls-container">
         <div class="buttons">
-          <div class="prev-track" onclick="prevTrack()">
+          <div aria-label="button-previous-track"  class="prev-track" onclick="prevTrack()">
             <i class="fa fa-step-backward fa-2x"></i>
           </div>
-          <div class="playpause-track" onclick="playpauseTrack()">
+          <div aria-label="play-music-button"  class="playpause-track" onclick="playpauseTrack()">
             <i class="fa fa-play-circle fa-5x"></i>
           </div>
-          <div class="next-track" onclick="nextTrack()">
+          <div aria-label="button-next-track" class="next-track" onclick="nextTrack()">
             <i class="fa fa-step-forward fa-2x"></i>
           </div>
         </div>
         <div class="slider_container">
-            <button class=" volume-down">
+            <button  aria-label="volume-down" class=" volume-down">
           <i class="fa fa-volume-down"></i>
           </button>
+          <label aria-label="volume" hidden >volume</label>
           <input
             type="range"
             min="1"
@@ -38,7 +39,7 @@
             class="volume_slider"
             onchange="setVolume()"
           />
-          <button class=" volume-up">
+          <button aria-label="volume-up" class= "volume-up">
           <i class="fa fa-volume-up"></i>
         </button>
         </div>
@@ -48,20 +49,24 @@
         <h3>Nom Artiste</h3>
         <p>Titre de la chanson</p>
         <div>
+          <label aria-label="timer" hidden >Timer</label>
         <input type="range" class="seek_slider" max="100" value="0" />
-        <span id="current-time" class="time">0:00</span> / <span id="total-time" class="time">0:00</span>
+        <span aria-label="timer-music" id="current-time" class="time">0:00</span> / <span id="total-time" class="time">0:00</span>
         </div>
       </div>
-      <input class="search-bar" placeholder="&#128269; Recherche" />
+      <label aria-label="search-bar" hidden >search-bar</label>
+      <input aria-label="search-bar"  class="search-bar" placeholder="&#128269; Recherche" />
     
     </header>
 
     <main>
       <aside>
         <nav>
+          <ul>
           <li>Music</li>
           <li>Vidéo</li>
           <li>Podcasts</li>
+          </ul>
         </nav>
       </aside>
 
